@@ -9,25 +9,25 @@ const fruitSchema = new mongoose.Schema({
 
 const fruitModel = mongoose.model("Fruit", fruitSchema);//this creates a collections with name fruits
 
-const fruit = new fruitModel({
-  name: "apple", 
-  rating: 7, 
-  review : "its an amazing fruit", 
-});
+// const fruit = new fruitModel({
+//   name: "apple", 
+//   rating: 7, 
+//   review : "its an amazing fruit", 
+// });
 
 // fruit.save();
 
-const melon  = new fruitModel({
-  name: "melon", 
-  rating : 9, 
-  review: "sweet in taste", 
-});
+// const melon  = new fruitModel({
+//   name: "melon", 
+//   rating : 9, 
+//   review: "sweet in taste", 
+// });
 
-const grape  = new fruitModel({
-  name: "grape", 
-  rating : 10, 
-  review: "amazing in taste", 
-});
+// const grape  = new fruitModel({
+//   name: "grape", 
+//   rating : 10, 
+//   review: "amazing in taste", 
+// });
 
 // fruitModel.insertMany([grape,melon]).then(function(){
 //     console.log('successfully inserted');
@@ -35,11 +35,13 @@ const grape  = new fruitModel({
 //   console.log(err);
 // });
 
-fruitModel.find({name: 'melon'}).then(function(err, fruit){
-  if(err){
-    console.log(err);
-  }
-  else{
-    console.log(fruit);
-  }
+fruitModel.find().then(function(fruit){
+    mongoose.connection.close();
+    
+    fruit.forEach(function(f){
+      console.log(f.name);
+    })
+}).catch(function(err){
+  console.log(err);
 });
+
