@@ -17,16 +17,29 @@ const fruit = new fruitModel({
 
 // fruit.save();
 
-const kiwi  = new fruitModel({
-  name: "kiwi", 
-  rating : 5, 
-  review: "sour in taste", 
-});
-
-const orange  = new fruitModel({
-  name: "orange", 
-  rating : 10, 
+const melon  = new fruitModel({
+  name: "melon", 
+  rating : 9, 
   review: "sweet in taste", 
 });
 
-fruitModel.insertMany([kiwi,orange]);
+const grape  = new fruitModel({
+  name: "grape", 
+  rating : 10, 
+  review: "amazing in taste", 
+});
+
+// fruitModel.insertMany([grape,melon]).then(function(){
+//     console.log('successfully inserted');
+// }).catch(function(err){
+//   console.log(err);
+// });
+
+fruitModel.find({name: 'melon'}).then(function(err, fruit){
+  if(err){
+    console.log(err);
+  }
+  else{
+    console.log(fruit);
+  }
+});
