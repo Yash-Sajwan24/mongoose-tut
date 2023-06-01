@@ -7,7 +7,7 @@ const fruitSchema = new mongoose.Schema({
   review: String, 
 });
 
-const fruitModel = mongoose.model("Fruit", fruitSchema);
+const fruitModel = mongoose.model("Fruit", fruitSchema);//this creates a collections with name fruits
 
 const fruit = new fruitModel({
   name: "apple", 
@@ -15,6 +15,18 @@ const fruit = new fruitModel({
   review : "its an amazing fruit", 
 });
 
-fruit.save();
+// fruit.save();
 
+const kiwi  = new fruitModel({
+  name: "kiwi", 
+  rating : 5, 
+  review: "sour in taste", 
+});
 
+const orange  = new fruitModel({
+  name: "orange", 
+  rating : 10, 
+  review: "sweet in taste", 
+});
+
+fruitModel.insertMany([kiwi,orange]);
